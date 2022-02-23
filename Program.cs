@@ -95,6 +95,29 @@ namespace linkedList
 
         }
 
+        public void deleteByIndex(int index)
+        {
+            var currentNode = this.head;
+            var prevNode = currentNode;
+            var count = 0;
+            if (currentNode != null && index == 0)
+            {
+                this.head = currentNode.next;
+                return;
+            }
+            while (currentNode != null && count != index)
+            {
+                prevNode = currentNode;
+                currentNode = currentNode.next;
+
+                count++;
+            }
+            if (currentNode == null)
+            {
+                return;
+            }
+            prevNode.next = currentNode.next;
+        }
         public void reverse()
         {
             var currentNode = this.head;
@@ -131,8 +154,9 @@ class Program
 
 
         linkList.printData();
-        // linkList.deleteNode("D");
-        // Console.WriteLine(linkList.getData());
+        linkList.deleteByIndex(3);
+        Console.WriteLine("--------------------deleteByIndex------------------");
+        linkList.printData();
         linkList.reverse();
         Console.WriteLine("--------------------reverse------------------");
         linkList.printData();
